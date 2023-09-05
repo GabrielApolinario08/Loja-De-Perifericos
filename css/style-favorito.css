@@ -1,0 +1,14 @@
+main {
+    background-color: #150050;
+    padding: 20px;
+    color: #fff;
+}
+
+section {
+    background-color: #3F0071;
+    padding: 20px;
+}
+
+.titulo {
+    font-size: 35px;
+}

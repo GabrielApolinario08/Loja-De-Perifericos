@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loja Online</title>
+</head>
+<body>
+  <h1>Loja Online</h1>
+  
+  <h2>Filtros:</h2>
+  
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="product" data-value="mouse"> Mouse
+  </label>
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="product" data-value="teclado"> Teclado
+  </label>
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="product" data-value="fones"> Fones
+  </label>
+  
+  <h2>Cores:</h2>
+  
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="color" data-value="preto"> Preto
+  </label>
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="color" data-value="branco"> Branco
+  </label>
+  <label>
+    <input type="checkbox" class="filter-checkbox" data-type="color" data-value="vermelho"> Vermelho
+  </label>
+  
+  <h2>Produtos Disponíveis:</h2>
+  <div id="product-list">
+    <!-- Aqui serão exibidos os produtos de acordo com as seleções -->
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.filter-checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateProductList);
+    });
+
+    function updateProductList() {
+      const selectedProducts = getSelectedValues('product');
+      const selectedColors = getSelectedValues('color');
+      console.log(selectedProducts);
+      console.log(selectedColors);
+      const productList = [
+        { product: 'mouse', color: 'preto' },
+        { product: 'mouse', color: 'branco' },
+        { product: 'mouse', color: 'vermelho' },
+        { product: 'teclado', color: 'preto' },
+        { product: 'teclado', color: 'branco' },
+        { product: 'teclado', color: 'vermelho' },
+        { product: 'fones', color: 'preto' },
+        { product: 'fones', color: 'branco' },
+        { product: 'fones', color: 'vermelho' },
+      ];
+      
+      const filteredProducts = productList.filter(item => 
+        (selectedProducts.length === 0 || selectedProducts.includes(item.product)) &&
+        (selectedColors.length === 0 || selectedColors.includes(item.color))
+      );
+      console.log(filteredProducts);
+      const productContainer = document.getElementById('product-list');
+      productContainer.innerHTML = '';
+
+      filteredProducts.forEach(item => {
+        const productItem = document.createElement('div');
+        productItem.textContent = `${item.product} - ${item.color}`;
+        productContainer.appendChild(productItem);
+      });
+    }
+
+    function getSelectedValues(type) {
+      const selectedValues = [];
+      checkboxes.forEach(checkbox => {
+        if (checkbox.dataset.type === type && checkbox.checked) {
+          selectedValues.push(checkbox.dataset.value);
+        }
+      });
+      return selectedValues;
+    }
+  </script>
+</body>
+</html>
