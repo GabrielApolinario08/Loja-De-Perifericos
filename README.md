@@ -1,2 +1,2 @@
-# Projeto de uma loja para praticar!
+# Produzindo uma loja para praticar!
 Ainda em andamento.
