@@ -1,2 +1,2 @@
-# Produzindo uma loja para praticar!
+# Loja com carrinho, favoritos e filtro totalmente funcional!
 Ainda em andamento.
